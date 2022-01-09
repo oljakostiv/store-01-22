@@ -1,4 +1,4 @@
-const { errorHandler: { badRequest } } = require('../errors')
+const { errorHandler: { badRequest } } = require('../errors');
 
 class UserController {
     async registration(req, res, next) {
