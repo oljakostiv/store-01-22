@@ -18,6 +18,10 @@ class ErrorHandler extends Error {
         return new ErrorHandler(400, message)
     };
 
+    static unauthorized(message) {
+        return new ErrorHandler(401, 'User is unauthorized')
+    };
+
     static forbidden(message) {
         return new ErrorHandler(403, message)
     };
