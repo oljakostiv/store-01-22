@@ -23,7 +23,7 @@ class ErrorHandler extends Error {
     };
 
     static forbidden(message) {
-        return new ErrorHandler(403, message)
+        return new ErrorHandler(403, 'Forbidden!')
     };
 
     static serverErr(message) {
