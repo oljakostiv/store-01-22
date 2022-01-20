@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {
     ADMIN_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE
 } from "./utils/consts";
 import { Admin, Auth, Basket, DevicePage, Shop } from './pages';
+import UndefinedPage from "./pages/UndefinedPage";
+import {Context} from "./index";
 
 const AppRouter = () => {
-    const isAuth = false;
+    const { user } = useContext(Context);
 
-    if (isAuth) {
+    console.log(user);
+
+    if (user.isAuth) {
         return (
             <Routes>
                 <Route path={ ADMIN_ROUTE } element={<Admin/>}/>
@@ -23,7 +27,7 @@ const AppRouter = () => {
             <Route path={ REGISTRATION_ROUTE } element={<Auth/>}/>
             <Route path={ DEVICE_ROUTE } element={<DevicePage/>}/>
             <Route path={ SHOP_ROUTE } element={<Shop/>}/>
-            <Route path='*' element={<Shop/>}/>
+            <Route path='*' element={<UndefinedPage/>}/>
         </Routes>
     )
 };
