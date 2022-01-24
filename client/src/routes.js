@@ -10,8 +10,6 @@ import {Context} from "./index";
 const AppRouter = () => {
     const { user } = useContext(Context);
 
-    console.log(user);
-
     if (user.isAuth) {
         return (
             <Routes>
@@ -25,7 +23,7 @@ const AppRouter = () => {
         <Routes>
             <Route path={ LOGIN_ROUTE } element={<Auth/>}/>
             <Route path={ REGISTRATION_ROUTE } element={<Auth/>}/>
-            <Route path={ DEVICE_ROUTE } element={<DevicePage/>}/>
+            <Route path={ DEVICE_ROUTE + '/:id' } element={<DevicePage/>}/>
             <Route path={ SHOP_ROUTE } element={<Shop/>}/>
             <Route path='*' element={<UndefinedPage/>}/>
         </Routes>

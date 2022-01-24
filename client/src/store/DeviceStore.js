@@ -3,12 +3,14 @@ import {makeAutoObservable} from "mobx";
 export default class DeviceStore {
     constructor() {
         this._types = [
-            { id: 1, name: 'phone' },
-            { id: 2, name: 'column' }
+            { id: 1, name: 'phones' },
+            { id: 2, name: 'columns' },
+            { id: 3, name: 'laptops' },
         ];
         this._brands = [
             { id: 1, name: 'Apple' },
-            { id: 2, name: 'Samsung' }
+            { id: 2, name: 'Samsung' },
+            { id: 3, name: 'Lenovo' }
         ];
         this._devices = [
             {
@@ -33,6 +35,9 @@ export default class DeviceStore {
                 img: "5e7d8b10-3208-4605-85b1-bf4dd0720a82.jpg"
             }
         ];
+        this._selectedType = {};
+        this._selectedBrand = {};
+
         makeAutoObservable(this);
     };
 
@@ -48,6 +53,14 @@ export default class DeviceStore {
         this._devices = devices;
     };
 
+    setSelectedType(type) {
+        this._selectedType = type;
+    };
+
+    setSelectedBrand(brand) {
+        this._selectedBrand = brand;
+    };
+
     get types() {
         return this._types;
     };
@@ -59,4 +72,12 @@ export default class DeviceStore {
     get devices() {
         return this._devices;
     };
+
+    get selectedType() {
+        return this._selectedType;
+    };
+
+    get selectedBrand() {
+        return this._selectedBrand;
+    }
 }
