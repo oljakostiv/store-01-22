@@ -21,6 +21,7 @@ const AppRouter = () => {
 
     return (
         <Routes>
+            <Route path={ ADMIN_ROUTE } element={<Admin/>}/>    //тимчасово!
             <Route path={ LOGIN_ROUTE } element={<Auth/>}/>
             <Route path={ REGISTRATION_ROUTE } element={<Auth/>}/>
             <Route path={ DEVICE_ROUTE + '/:id' } element={<DevicePage/>}/>
