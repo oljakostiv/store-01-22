@@ -14,7 +14,7 @@ const Auth = () => {
             style={{marginTop: 200}}
         >
             <Card className='p-4' style={{width: 600}}>
-                <h2 className='m-auto'>{isLogin ? 'Authorization' : 'Registration'}</h2>
+                <h2 className='m-auto'>{isLogin ? 'Authorization' : 'Register'}</h2>
 
                 <Form className='d-flex flex-column'>
                     <div className="mb-3">
@@ -44,11 +44,11 @@ const Auth = () => {
                     <Row className='d-flex justify-content-around mt-1'>
                         {isLogin ?
                             <div className='w-50'>
-                                No account? <NavLink to={ REGISTRATION_ROUTE }>Registering</NavLink>
+                                Don't have an account yet? <NavLink to={ REGISTRATION_ROUTE }>Register</NavLink>
                             </div>
                             :
                             <div className='w-50'>
-                                Account exist? <NavLink to={ LOGIN_ROUTE }>Log in</NavLink>
+                                Already have an account? <NavLink to={ LOGIN_ROUTE }>Log in</NavLink>
                             </div>
                         }
                         <Button
