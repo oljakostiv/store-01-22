@@ -1,12 +1,38 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
-import {NavLink, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {observer} from "mobx-react-lite";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from "../utils/consts";
+import {login, register} from "../http/userAPI";
+import {Context} from "../index";
 
-const Auth = () => {
+const Auth = observer(() => {
+    const {user} = useContext(Context);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const isLogin = location.pathname === LOGIN_ROUTE;
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const click = async () => {
+        try {
+            let data;
+
+            if (isLogin) {
+                data = await login(email, password);
+            } else {
+                data = await register(email, password);
+            }
+
+            user.setUser(user);
+            user.setIsAuth(true);
+            navigate(SHOP_ROUTE);
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
 
     return (
         <Container
@@ -14,7 +40,7 @@ const Auth = () => {
             style={{marginTop: 200}}
         >
             <Card className='p-4' style={{width: 600}}>
-                <h2 className='m-auto'>{isLogin ? 'Authorization' : 'Register'}</h2>
+                <h2 className='m-auto'>{isLogin ? 'Log in' : 'Register'}</h2>
 
                 <Form className='d-flex flex-column'>
                     <div className="mb-3">
@@ -23,6 +49,8 @@ const Auth = () => {
                         </label>
                         <input type="email" className="form-control"
                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                               value={email}
+                               onChange={e => setEmail(e.target.value)}
                         ></input>
                         <div id="emailHelp" className="form-text">
                             We'll never share your email with anyone else.
@@ -33,7 +61,10 @@ const Auth = () => {
                         <label htmlFor="exampleInputPassword1" className="form-label">
                             Password
                         </label>
-                        <input type="password" className="form-control" id="exampleInputPassword1"></input>
+                        <input type="password" className="form-control" id="exampleInputPassword1"
+                               value={password}
+                               onChange={e => setPassword(e.target.value)}
+                        ></input>
                     </div>
 
                     <div className="mb-3 form-check">
@@ -54,6 +85,7 @@ const Auth = () => {
                         <Button
                             className='w-25'
                             variant={'outline-success'}
+                            onClick={click}
                         >
                             Submit
                         </Button>
@@ -62,6 +94,6 @@ const Auth = () => {
             </Card>
         </Container>
     );
-};
+});
 
 export default Auth;
