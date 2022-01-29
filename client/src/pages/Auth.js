@@ -37,7 +37,7 @@ const Auth = observer(() => {
     return (
         <Container
             className='d-flex justify-content-center'
-            style={{marginTop: 200}}
+            style={{marginTop: 100, marginBottom: 200}}
         >
             <Card className='p-4' style={{width: 600}}>
                 <h2 className='m-auto'>{isLogin ? 'Log in' : 'Register'}</h2>

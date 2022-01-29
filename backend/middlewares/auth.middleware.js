@@ -10,7 +10,7 @@ module.exports = function (req, res, next) {
         const tokenFromHeader = req.headers.authorization.split(' ')[1]; //бо перше тип, а тоді сам токен;
 
         if (!tokenFromHeader) {
-            return next(unauthorized());
+            return res(unauthorized());
         }
 
         const decoded = jwt.verify(tokenFromHeader, 'secret_key');

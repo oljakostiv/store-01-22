@@ -15,13 +15,17 @@ const AppRouter = () => {
             <Routes>
                 <Route path={ ADMIN_ROUTE } element={<Admin/>}/>
                 <Route path={ BASKET_ROUTE } element={<Basket/>}/>
+                <Route path={ LOGIN_ROUTE } element={<Auth/>}/>
+                <Route path={ REGISTRATION_ROUTE } element={<Auth/>}/>
+                <Route path={ DEVICE_ROUTE + '/:id' } element={<DevicePage/>}/>
+                <Route path={ SHOP_ROUTE } element={<Shop/>}/>
+                <Route path='*' element={<UndefinedPage/>}/>
             </Routes>
         )
     }
 
     return (
         <Routes>
-            <Route path={ ADMIN_ROUTE } element={<Admin/>}/>    //тимчасово!
             <Route path={ LOGIN_ROUTE } element={<Auth/>}/>
             <Route path={ REGISTRATION_ROUTE } element={<Auth/>}/>
             <Route path={ DEVICE_ROUTE + '/:id' } element={<DevicePage/>}/>

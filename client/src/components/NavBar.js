@@ -8,8 +8,12 @@ import {ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE} from "../utils/const
 
 const NavBar = observer(() => {
     const {user} = useContext(Context);
-
     const navigate = useNavigate();
+
+    const logOut = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+    }
 
     return (
         <>
@@ -29,7 +33,7 @@ const NavBar = observer(() => {
                             >
                                 Admin
                             </Button>
-                            <Button onClick={() => navigate(LOGIN_ROUTE)}
+                            <Button onClick={() => logOut()}
                                     variant={'outline-secondary'}
                                     style={{marginLeft: 20}}
                             >
@@ -39,10 +43,10 @@ const NavBar = observer(() => {
                         </Nav>
                         :
                         <Nav className="ml-auto">
-                            <Button onClick={() => user.setIsAuth(true)}
+                            <Button onClick={() => navigate(LOGIN_ROUTE)}
                                     variant={'outline-secondary'}
                             >
-                                Authorisation
+                                Log in
                             </Button>
                         </Nav>
                     }
